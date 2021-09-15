@@ -1,4 +1,4 @@
-package pl.jaczewski.sklepdemo.product;
+package pl.jaczewski.sklepdemo.model;
 
 import lombok.Getter;
 

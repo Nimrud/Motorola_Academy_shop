@@ -1,6 +1,7 @@
-package pl.jaczewski.sklepdemo.product;
+package pl.jaczewski.sklepdemo.database;
 
 import org.springframework.stereotype.Component;
+import pl.jaczewski.sklepdemo.model.Product;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
