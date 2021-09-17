@@ -1,17 +1,20 @@
 package pl.jaczewski.sklepdemo.database;
 
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ProductDao {
 
-    private List<Product> products = Arrays.asList(
+    // tymczasowe pole
+    // TODO: po dodaniu DB zmienić na AUTO_INCREMENT
+    private static int idValue = 1;
+
+    private final List<Product> products = Arrays.asList(
             new Product("Mydło", "Najlepsze mydełko pod słońcem, super pianka, boski zapach", new BigDecimal("25.00"), Product.Category.DOMESTIC_DETERGENTS, 10),
             new Product("Masło", "Niezdrowe, same tłuszcze nasycone", new BigDecimal("6.99"), Product.Category.FOOD, 20),
             new Product("Chleb", "Razowy, chrupiący, pyszny", new BigDecimal("5.50"), Product.Category.FOOD, 15),
@@ -21,7 +24,7 @@ public class ProductDao {
             new Product("Lalka", "Chińska, na baterie, wydaje odgłosy", new BigDecimal("49.99"), Product.Category.TOYS, 2));
 
     public List<Product> all() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
     public List<Product> allAllowed() {
@@ -53,5 +56,44 @@ public class ProductDao {
             }
         }
         return null;
+    }
+
+    public Product byId(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public void addProduct(@NonNull Product product) {
+        if(!products.contains(product)) {
+            product.setId(idValue);
+            products.add(product);
+            idValue++;
+        }
+    }
+
+    public void removeProduct(int id) {
+        ListIterator<Product> productIterator = products.listIterator();
+        while (productIterator.hasNext()) {
+            Product product = productIterator.next();
+            if (product.getId() == id) {
+                productIterator.remove();
+                break;
+            }
+        }
+    }
+
+    public void updateProduct(@NonNull Product productToUpdate) {
+        ListIterator<Product> productIterator = products.listIterator();
+        while (productIterator.hasNext()) {
+            Product product = productIterator.next();
+            if (product.equals(productToUpdate)) {
+                productIterator.set(productToUpdate);
+                break;
+            }
+        }
     }
 }
