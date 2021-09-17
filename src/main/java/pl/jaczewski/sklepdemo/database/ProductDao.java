@@ -13,15 +13,18 @@ public class ProductDao {
     // tymczasowe pole
     // TODO: po dodaniu DB zmienić na AUTO_INCREMENT
     private static int idValue = 1;
+    private final List<Product> products = new ArrayList<>();
 
-    private final List<Product> products = Arrays.asList(
-            new Product("Mydło", "Najlepsze mydełko pod słońcem, super pianka, boski zapach", new BigDecimal("25.00"), Product.Category.DOMESTIC_DETERGENTS, 10),
-            new Product("Masło", "Niezdrowe, same tłuszcze nasycone", new BigDecimal("6.99"), Product.Category.FOOD, 20),
-            new Product("Chleb", "Razowy, chrupiący, pyszny", new BigDecimal("5.50"), Product.Category.FOOD, 15),
-            new Product("Colt AR-15", "Półautomatyczny, magazynek na 25 nabojów, Made in USA", new BigDecimal("9999.99"), Product.Category.WEAPONS, 1),
-            new Product("Wyciskarka do czosnku", "Żadna inna tak nie wyciska", new BigDecimal("20.00"), Product.Category.HOUSEHOLD_GOODS, 2),
-            new Product("Piwo Okocim", "Okocim spojrzeniu", new BigDecimal("5.50"), Product.Category.ALCOHOL, 40),
-            new Product("Lalka", "Chińska, na baterie, wydaje odgłosy", new BigDecimal("49.99"), Product.Category.TOYS, 2));
+    public ProductDao() {
+        addProduct(new Product("Mydło", "Najlepsze mydełko pod słońcem, super pianka, boski zapach", new BigDecimal("25.00"), Product.Category.DOMESTIC_DETERGENTS, 10));
+        addProduct(new Product("Masło", "Niezdrowe, same tłuszcze nasycone", new BigDecimal("6.99"), Product.Category.FOOD, 20));
+        addProduct(new Product("Chleb", "Razowy, chrupiący, pyszny", new BigDecimal("5.50"), Product.Category.FOOD, 15));
+        addProduct(new Product("Colt AR-15", "Półautomatyczny, magazynek na 25 nabojów, Made in USA", new BigDecimal("9999.99"), Product.Category.WEAPONS, 1));
+        addProduct(new Product("Wyciskarka do czosnku", "Żadna inna tak nie wyciska", new BigDecimal("20.00"), Product.Category.HOUSEHOLD_GOODS, 2));
+        addProduct(new Product("Piwo Okocim", "Okocim spojrzeniu", new BigDecimal("5.50"), Product.Category.ALCOHOL, 40));
+        addProduct(new Product("Lalka", "Chińska, na baterie, wydaje odgłosy", new BigDecimal("49.99"), Product.Category.TOYS, 2));
+        addProduct(new Product("Nałęczowianka 1,5 litra", "Woda mineralna", new BigDecimal("1.99"), Product.Category.FOOD, 20));
+    }
 
     public List<Product> all() {
         return Collections.unmodifiableList(products);
@@ -95,5 +98,13 @@ public class ProductDao {
                 break;
             }
         }
+    }
+
+    public List<Product.Category> categories() {
+        List<Product.Category> allCategories = new ArrayList<>();
+        for (Product.Category c : EnumSet.allOf(Product.Category.class)) {
+            allCategories.add(c);
+        }
+        return allCategories;
     }
 }
