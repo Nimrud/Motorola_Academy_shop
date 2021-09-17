@@ -3,10 +3,13 @@ package pl.jaczewski.sklepdemo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import pl.jaczewski.sklepdemo.database.UserDAO;
+import pl.jaczewski.sklepdemo.model.Product;
 import pl.jaczewski.sklepdemo.service.ProductService;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class ShopController {
@@ -48,5 +51,27 @@ public class ShopController {
     public String displayUserDetails(Model model, @PathVariable Long id) {
         model.addAttribute("user", userDAO.userById(id));
         return "userDetails";
+    }
+
+    @GetMapping("/addProduct")
+    public String addProduct(@RequestParam(required = false, defaultValue = "-1") int id, Model model) {
+        Product product = productService.getProduct(id);
+        if (product == null) {
+            product = new Product("", "", new BigDecimal(0.00), Product.Category.NONE, 0);
+        }
+        List<Product.Category> categories = productService.getCategories();
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categories);
+        return "newProduct";
+    }
+
+    @PostMapping("/addProduct")
+    public String saveProduct(@ModelAttribute("product") Product product) {
+        if (product.getId() == 0) {
+            productService.addProduct(product);
+        } else {
+            productService.updateProduct(product);
+        }
+        return "redirect:/allProducts";
     }
 }

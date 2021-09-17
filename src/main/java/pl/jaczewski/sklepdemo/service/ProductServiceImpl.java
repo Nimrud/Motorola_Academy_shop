@@ -46,4 +46,9 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getDataForEveryone() {
         return productDao.allAllowed();
     }
+
+    @Override
+    public List<Product.Category> getCategories() {
+        return productDao.categories();
+    }
 }

@@ -2,23 +2,44 @@ package pl.jaczewski.sklepdemo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(of = "id")
 public class Product {
     private int id;
+    @NotBlank
     private String name;
     private String description;
+    @NotBlank
+    @DecimalMin("0.01")
     private BigDecimal price;
     private Category category;
     private int quantityInStock;
     private int reserved;
 
     public enum Category {
-        FOOD, DOMESTIC_DETERGENTS, ALCOHOL, TOYS, WEAPONS, HOUSEHOLD_GOODS, DRUGS
+        FOOD("art. spożywcze"),
+        DOMESTIC_DETERGENTS("detergenty"),
+        ALCOHOL("alkohole"),
+        TOYS("zabawki"),
+        WEAPONS("broń"),
+        HOUSEHOLD_GOODS("art. gospodarstwa domowego"),
+        DRUGS("narkotyki"),
+        NONE("brak");
+
+        private final String displayValue;
+
+        private Category(String displayValue) {
+            this.displayValue = displayValue;
+        }
+
+        public String getDisplayValue() {
+            return displayValue;
+        }
     }
 
     public Product(String name, String description, BigDecimal price, Category category, int quantityInStock) {

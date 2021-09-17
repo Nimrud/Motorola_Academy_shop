@@ -13,4 +13,5 @@ public interface ProductService {
     void updateProduct(Product product);
     List<Product> getData();
     List<Product> getDataForEveryone();
+    List<Product.Category> getCategories();
 }

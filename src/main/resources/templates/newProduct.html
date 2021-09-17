@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Product</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+<p th:replace="~{fragments/menu :: menuFragment}"></p>
+
+<div th:align="center">
+<form action="#" th:action="@{/addProduct}" th:object="${product}" method="POST">
+    <table>
+        <tr>
+            <td>Nazwa: </td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Opis</td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td>Cena: </td>
+            <td><input type="number" step="any" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Kategoria: </td>
+            <td>
+                <select id="category" name="category">
+                    <option th:each="categoryOption : ${categories}"
+                            th:value="${categoryOption}"
+                            th:text="${categoryOption.displayValue}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Ilość: </td>
+            <td><input type="number" th:field="*{quantityInStock}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td th:align="right"><input type="submit" value="OK"></td>
+        </tr>
+    </table>
+
+</form>
+
+</div>
+
+<footer th:replace="~{fragments/footer :: footerFragment}">Footer</footer>
+
+</body>
+</html>
