@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Products List</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
+
 <body>
-<table th:align="center" border="1">
+<p th:replace="~{fragments/menu :: menuFragment}"></p>
+
+<table th:align="center" th:border="1" th:cellpadding="5">
     <thead>
     <tr>
         <td>nazwa art.</td>
@@ -22,6 +26,8 @@
     </tr>
     </tbody>
 </table>
+
+<footer th:replace="~{fragments/footer :: footerFragment}">Footer</footer>
 
 </body>
 </html>

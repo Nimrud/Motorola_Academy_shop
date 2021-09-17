@@ -49,6 +49,4 @@ public class ShopController {
         model.addAttribute("user", userDAO.userById(id));
         return "userDetails";
     }
-
-
 }
