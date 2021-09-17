@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.userName}">Username</title>
+</head>
+<body>
+<p>
+<table th:align="center" border="1">
+    <thead>
+        <tr>
+            <td th:text="ID">ID</td>
+            <td th:text="Username">Username</td>
+            <td th:text="E-mail">E-mail</td>
+            <td th:text="Phone">Phone</td>
+            <td th:text="'Is Adult?'">Is Adult</td>
+            <td th:text="'Is Admin?'">Is Admin</td>
+        </tr>
+    </thead>
+    <tr>
+        <td th:text="${user.id}">ID</td>
+        <td th:text="${user.userName}">Username</td>
+        <td th:text="${user.email}">E-mail</td>
+        <td th:text="${user.phone}">Phone</td>
+        <td th:text="${user.isAdult()}">Is Adult</td>
+        <td th:text="${user.isAdmin()}">Is Admin</td>
+    </tr>
+</table>
+</p>
+</body>
+</html>

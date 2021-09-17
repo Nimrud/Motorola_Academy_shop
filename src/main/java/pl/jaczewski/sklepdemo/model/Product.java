@@ -14,7 +14,7 @@ public class Product {
     private int reserved;
 
     public enum Category {
-        FOOD, DOMESTIC_DETERGENTS, ALCOHOL, TOYS, WEAPONS, HOUSEHOLD_GOODS
+        FOOD, DOMESTIC_DETERGENTS, ALCOHOL, TOYS, WEAPONS, HOUSEHOLD_GOODS, DRUGS
     }
 
     public Product(String name, String description, BigDecimal price, Category category, int quantityInStock) {

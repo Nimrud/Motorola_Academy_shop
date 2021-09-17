@@ -3,10 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista produktów</title>
+    <title>Products List</title>
 </head>
 <body>
-<table>
+<table th:align="center" border="1">
+    <thead>
+    <tr>
+        <td>nazwa art.</td>
+        <td>opis</td>
+        <td>cena/szt.</td>
+    </tr>
+    </thead>
     <tbody>
     <tr th:each="product : ${products}">
         <td><span th:text="${product.name}">Name</span></td>
