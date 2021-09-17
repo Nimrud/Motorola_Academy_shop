@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,28 @@ public class ProductDao {
 
     public List<Product> all() {
         return products;
+    }
+
+    public List<Product> allAllowed() {
+        List<Product> allUnder18 = new ArrayList<>();
+        for (Product p : products) {
+            if ((p.getCategory().equals(Product.Category.ALCOHOL)) || (p.getCategory().equals(Product.Category.WEAPONS)) || (p.getCategory().equals(Product.Category.DRUGS))) {
+
+            } else {
+                allUnder18.add(p);
+            }
+        }
+        return allUnder18;
+    }
+
+    public List<Product> allOver18() {
+        List<Product> allOver18 = new ArrayList<>();
+        for (Product p : products) {
+            if ((p.getCategory().equals(Product.Category.ALCOHOL)) || (p.getCategory().equals(Product.Category.WEAPONS)) || (p.getCategory().equals(Product.Category.DRUGS))) {
+                allOver18.add(p);
+            }
+        }
+        return allOver18;
     }
 
     public Product byName(String name) {
