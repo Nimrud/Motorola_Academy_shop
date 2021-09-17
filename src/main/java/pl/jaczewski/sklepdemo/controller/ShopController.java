@@ -34,6 +34,11 @@ public class ShopController {
         model.addAttribute("products", productService.getDataForEveryone());
         return "listProducts";
     }
+    @GetMapping("/admin/allProducts")
+    public String adminListProducts(Model model) {
+        model.addAttribute("products", productService.getData());
+        return "adminListProducts";
+    }
 
     @GetMapping("/allProducts/{name}")
     public String displayProduct(Model model, @PathVariable String name) {
@@ -53,7 +58,7 @@ public class ShopController {
         return "userDetails";
     }
 
-    @GetMapping("/addProduct")
+    @GetMapping("/admin/addProduct")
     public String addProduct(@RequestParam(required = false, defaultValue = "-1") int id, Model model) {
         Product product = productService.getProduct(id);
         if (product == null) {
@@ -65,13 +70,19 @@ public class ShopController {
         return "newProduct";
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/admin/addProduct")
     public String saveProduct(@ModelAttribute("product") Product product) {
         if (product.getId() == 0) {
             productService.addProduct(product);
         } else {
             productService.updateProduct(product);
         }
-        return "redirect:/allProducts";
+        return "redirect:/admin/allProducts";
+    }
+
+    @GetMapping("/admin/deleteProduct")
+    public String deleteProduct(@RequestParam int id) {
+        productService.removeProduct(id);
+        return "redirect:/admin/allProducts";
     }
 }
