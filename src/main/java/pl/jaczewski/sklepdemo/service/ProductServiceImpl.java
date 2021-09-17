@@ -1,9 +1,13 @@
 package pl.jaczewski.sklepdemo.service;
 
 import lombok.NonNull;
+import org.springframework.stereotype.Service;
 import pl.jaczewski.sklepdemo.database.ProductDao;
 import pl.jaczewski.sklepdemo.model.Product;
 
+import java.util.List;
+
+@Service
 public class ProductServiceImpl implements ProductService{
 
     private final ProductDao productDao = new ProductDao();
@@ -34,7 +38,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ProductDao getData() {
-        return productDao;
+    public List<Product> getData() {
+        return productDao.all();
+    }
+
+
+    public List<Product> getDataForEveryone() {
+        return productDao.allAllowed();
     }
 }
