@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products List</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+<p th:replace="~{fragments/menu :: menuFragment}"></p>
+
+<p th:align="center">
+    <a th:href="@{/admin/addProduct}" th:text="'Dodaj nowy produkt'">New</a>
+</p>
+
+<table th:align="center" th:border="1" th:cellpadding="5">
+    <thead>
+    <tr>
+        <td>-</td>
+        <td>ID</td>
+        <td>nazwa art.</td>
+        <td>opis</td>
+        <td>cena/szt.</td>
+        <td>dost. ilość</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td><a th:href="@{'/allProducts/' + ${product.name}}" th:text="info">Details</a></td>
+        <td><span th:text="${product.id}">ID</span></td>
+        <td th:text="${product.name}">Name</td>
+        <td><span th:text="${product.description}">Description</span></td>
+        <td><span th:text="${product.price}">Price</span></td>
+        <td><span th:text="${product.getQuantityInStock()}">Quantity</span></td>
+        <td><a th:href="@{/admin/addProduct(id=${product.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/deleteProduct(id=${product.id})}">Delete</a> </td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="~{fragments/footer :: footerFragment}">Footer</footer>
+
+</body>
+</html>
