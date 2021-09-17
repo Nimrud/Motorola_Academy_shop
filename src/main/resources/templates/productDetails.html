@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title th:text="${product.name}">Product</title>
+    <title>Products List</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
+
 <body>
+<p th:replace="~{fragments/menu :: menuFragment}"></p>
+
 <p th:align="center">
-    <span th:text="${product.name}">Name</span>
+    <span th:text="${product?.name}">Name</span>
     <span>: </span>
-    <span th:text="${product.price}">Price</span>
+    <span th:text="${product?.price}">Price</span>
     <span> PLN</span>
-    </br>
-    <span th:text="${product.description}">Description</span>
+    <br/>
+    <span th:text="${product?.description}">Description</span>
 </p>
+
+<footer th:replace="~{fragments/footer :: footerFragment}">Footer</footer>
+
 </body>
 </html>
