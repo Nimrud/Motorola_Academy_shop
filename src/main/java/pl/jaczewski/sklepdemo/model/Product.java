@@ -1,11 +1,15 @@
 package pl.jaczewski.sklepdemo.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.math.BigDecimal;
 
-@Getter
+@Data
+@EqualsAndHashCode(of = "id")
 public class Product {
+    private int id;
     private String name;
     private String description;
     private BigDecimal price;
