@@ -85,4 +85,14 @@ public class ShopController {
         productService.removeProduct(id);
         return "redirect:/admin/allProducts";
     }
+
+    @GetMapping("/")
+    public String homepage() {
+        return "homepage";
+    }
+
+    @GetMapping("basket")
+    public String basket(Model model) {
+        return "basket";
+    }
 }
