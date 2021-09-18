@@ -26,7 +26,12 @@
         <td th:text="${product.name}">Name</td>
         <td><span th:text="${product.description}">Description</span></td>
         <td><span th:text="${product.price}">Price</span></td>
-        <td></td>
+        <td>
+            <form th:action="@{/order}" method="post">
+                <input type="number" name="quantity" required>
+                <input type="submit" value="do koszyka">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

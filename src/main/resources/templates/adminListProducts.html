@@ -11,7 +11,10 @@
 <p th:replace="~{fragments/menu :: menuFragment}"></p>
 
 <p th:align="center">
-    <a th:href="@{/admin/addProduct}" th:text="'Dodaj nowy produkt'">New</a>
+    <a th:href="@{/allCustomers}" th:text="'Lista klientów'">Customers</a><br/>
+    <a th:href="@{/allUsers/1}" th:text="'Zobacz użytkownika'">Users</a><br/>
+    <br/>
+    <a th:href="@{/admin/addProduct}" th:text="'Dodaj nowy produkt'">New</a><br/>
 </p>
 
 <table th:align="center" th:border="1" th:cellpadding="5">
