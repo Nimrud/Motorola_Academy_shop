@@ -10,14 +10,14 @@ import java.math.BigDecimal;
 public class ItemInBasket {
 
     private Product product;
-    private int quantity;
+    private int quantityInBasket;
 
     public ItemInBasket(Product product, int quantity) {
         this.product = product;
-        this.quantity = quantity;
+        this.quantityInBasket = quantity;
     }
 
     public BigDecimal itemTotalValue() {
-        return product.getPrice().multiply(BigDecimal.valueOf(quantity));
+        return product.getPrice().multiply(BigDecimal.valueOf(quantityInBasket));
     }
 }
