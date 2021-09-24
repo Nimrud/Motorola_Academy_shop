@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService{
 
 
     public List<Product> getDataForEveryone() {
-        return productDao.allAllowed();
+        return productDao.allAllowedUnder18yo();
     }
 
     @Override

@@ -30,7 +30,7 @@ public class ProductDao {
         return Collections.unmodifiableList(products);
     }
 
-    public List<Product> allAllowed() {
+    public List<Product> allAllowedUnder18yo() {
         List<Product> allUnder18 = new ArrayList<>();
         for (Product p : products) {
             if ((p.getCategory().equals(Product.Category.ALCOHOL)) || (p.getCategory().equals(Product.Category.WEAPONS)) || (p.getCategory().equals(Product.Category.DRUGS))) {
@@ -42,7 +42,7 @@ public class ProductDao {
         return allUnder18;
     }
 
-    public List<Product> allOver18() {
+    public List<Product> allForAdults() {
         List<Product> allOver18 = new ArrayList<>();
         for (Product p : products) {
             if ((p.getCategory().equals(Product.Category.ALCOHOL)) || (p.getCategory().equals(Product.Category.WEAPONS)) || (p.getCategory().equals(Product.Category.DRUGS))) {
@@ -92,8 +92,8 @@ public class ProductDao {
     public void updateProduct(@NonNull Product productToUpdate) {
         ListIterator<Product> productIterator = products.listIterator();
         while (productIterator.hasNext()) {
-            Product product = productIterator.next();
-            if (product.equals(productToUpdate)) {
+            Product productInShop = productIterator.next();
+            if (productInShop.equals(productToUpdate)) {
                 productIterator.set(productToUpdate);
                 break;
             }
@@ -106,5 +106,19 @@ public class ProductDao {
             allCategories.add(c);
         }
         return allCategories;
+    }
+
+    public Map<String, String> productAvailability() {
+        Map<String, String> availability = new HashMap<>();
+        for(Product p : products) {
+            if (p.getQuantityInStock() > 10) {
+                availability.put(p.getName(), "duża ilość");
+            } else if (p.getQuantityInStock() > 3 && p.getQuantityInStock() <= 10) {
+                availability.put(p.getName(), "średnia ilość");
+            } else {
+                availability.put(p.getName(), "ostatnie sztuki");
+            }
+        }
+        return availability;
     }
 }
