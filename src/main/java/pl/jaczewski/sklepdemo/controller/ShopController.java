@@ -116,9 +116,10 @@ public class ShopController {
         return "basket";
     }
 
-    @GetMapping("/basket/removeItem")
-    public String removeItemFromBasket(@RequestParam ItemInBasket item) {
-        basketService.removeItem(item);
+    @GetMapping("/basket/removeItem/{name}")
+    public String removeItemFromBasket(@PathVariable String name) {
+        ItemInBasket itemInBasket = basketService.getItemByName(name);
+        basketService.removeItem(itemInBasket);
         return "redirect:/basket";
     }
 
