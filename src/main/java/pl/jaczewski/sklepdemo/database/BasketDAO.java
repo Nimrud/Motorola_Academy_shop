@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,13 +14,18 @@ import java.util.List;
 @Repository
 public class BasketDAO {
 
-    private List<ItemInBasket> products = new LinkedList<>();
-
+    // fields
+    private List<ItemInBasket> products = new ArrayList<>();
     private BigDecimal promotion1 = new BigDecimal("0.95");
     private BigDecimal promotion2 = new BigDecimal("0.9");
 
-    public List<ItemInBasket> getItems() {
-        return Collections.unmodifiableList(products);
+    // constructor
+    public BasketDAO() {
+    }
+
+    // public methods
+    public List<ItemInBasket> getAllItems() {
+        return products;
     }
 
     public BigDecimal accumulatedPrice() {
@@ -34,7 +38,7 @@ public class BasketDAO {
         return totalPrice;
     }
 
-    public BigDecimal totalPrice() {
+    public BigDecimal finalPrice() {
         // TODO
         // cena z promocjami (zwraca najkorzystniejszą dla klienta opcję)
         return new BigDecimal("-1");
@@ -49,6 +53,17 @@ public class BasketDAO {
             }
         }
         return null;
+    }
+
+    public int getQuantityReserved(String name) {
+        if (products != null) {
+            for(ItemInBasket i : products) {
+                if (name.equals(i.getProduct().getName())) {
+                    return i.getQuantityInBasket();
+                }
+            }
+        }
+        return 0;
     }
 
     public int addItem(ItemInBasket item) {

@@ -27,9 +27,9 @@
         <td><span th:text="${product.description}">Description</span></td>
         <td><span th:text="${product.price}">Price</span></td>
         <td>
-            <form th:action="@{'/order/' + ${product.name} }" method="post">
-                <input type="number" name="quantity" min="0" step="1" required>
-                <input type="submit" value="do koszyka">
+            <form th:action="@{'/order/' + ${product.name}}" th:object="${item}" method="post">
+                <input type="number" name="quantityInBasket" min="1" step="1" required>
+                <input type="submit" value="do koszyka" onclick="alert('Dodano do koszyka')">
             </form>
         </td>
     </tr>

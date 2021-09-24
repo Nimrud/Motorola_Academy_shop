@@ -27,7 +27,7 @@ public class ProductDao {
     }
 
     public List<Product> all() {
-        return Collections.unmodifiableList(products);
+        return products;
     }
 
     public List<Product> allAllowedUnder18yo() {

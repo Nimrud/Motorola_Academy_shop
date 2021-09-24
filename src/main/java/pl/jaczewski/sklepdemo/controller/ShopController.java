@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.jaczewski.sklepdemo.database.UserDAO;
+import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.model.Product;
+import pl.jaczewski.sklepdemo.service.BasketService;
 import pl.jaczewski.sklepdemo.service.ProductService;
 
 import java.math.BigDecimal;
@@ -14,29 +16,32 @@ import java.util.List;
 @Controller
 public class ShopController {
 
+    private final BasketService basketService;
     private final ProductService productService;
     private final UserDAO userDAO;
 
     @Autowired
-    public ShopController(ProductService productService, UserDAO userDAO) {
+    public ShopController(BasketService basketService, ProductService productService, UserDAO userDAO) {
+        this.basketService = basketService;
         this.productService = productService;
         this.userDAO = userDAO;
     }
 
     @GetMapping("/allProducts")
     public String listProducts(Model model) {
-        model.addAttribute("products", productService.getData());
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("item", new ItemInBasket());
         return "listProducts";
     }
 
-    @GetMapping("/allProducts18")
+    @GetMapping("/allProductsUnder18yo")
     public String listProducts18(Model model) {
-        model.addAttribute("products", productService.getDataForEveryone());
+        model.addAttribute("products", productService.getProductsForEveryone());
         return "listProducts";
     }
     @GetMapping("/admin/allProducts")
     public String adminListProducts(Model model) {
-        model.addAttribute("products", productService.getData());
+        model.addAttribute("products", productService.getAllProducts());
         return "adminListProducts";
     }
 
@@ -44,6 +49,20 @@ public class ShopController {
     public String displayProduct(Model model, @PathVariable String name) {
         model.addAttribute("product", productService.getProduct(name));
         return "productDetails";
+    }
+
+    @PostMapping("/order/{name}")
+    public String addProductToBasket(@PathVariable String name, @ModelAttribute("itemToBasket") ItemInBasket itemToBasket,
+                                     Model model) {
+        if (basketService.getItemByName(name) == null) {
+            itemToBasket.setProduct(productService.getProduct(name));
+            basketService.addItem(itemToBasket);
+        } else {
+            basketService.getItemByName(name).setQuantityInBasket(itemToBasket.getQuantityInBasket());
+        }
+        model.addAttribute("basket", basketService);
+        model.addAttribute("itemToBasket", itemToBasket);
+        return "redirect:/allProducts";
     }
 
     @GetMapping("/allCustomers")
@@ -91,8 +110,22 @@ public class ShopController {
         return "homepage";
     }
 
-    @GetMapping("basket")
+    @GetMapping("/basket")
     public String basket(Model model) {
+        model.addAttribute("basket", basketService);
         return "basket";
+    }
+
+    @GetMapping("/basket/removeItem")
+    public String removeItemFromBasket(@RequestParam ItemInBasket item) {
+        basketService.removeItem(item);
+        return "redirect:/basket";
+    }
+
+    @PostMapping("/finalise")
+    @ResponseBody
+    public String finalisePurchase() {
+        // TODO
+        return "Zamówienie zostało złożone!";
     }
 }

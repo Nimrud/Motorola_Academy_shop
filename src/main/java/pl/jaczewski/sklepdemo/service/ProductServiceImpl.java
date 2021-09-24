@@ -38,12 +38,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> getData() {
+    public List<Product> getAllProducts() {
         return productDao.all();
     }
 
 
-    public List<Product> getDataForEveryone() {
+    public List<Product> getProductsForEveryone() {
         return productDao.allAllowedUnder18yo();
     }
 
