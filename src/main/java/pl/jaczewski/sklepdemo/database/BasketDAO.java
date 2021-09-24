@@ -2,6 +2,7 @@ package pl.jaczewski.sklepdemo.database;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Repository;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Repository
 public class BasketDAO {
 
     private List<ItemInBasket> products = new LinkedList<>();
@@ -49,7 +51,26 @@ public class BasketDAO {
         return null;
     }
 
-    public void addItem(ItemInBasket item) {
-        // TODO
+    public int addItem(ItemInBasket item) {
+        if (item.getQuantityInBasket() <= item.getProduct().getQuantityInStock()) {
+            item.getProduct().setReserved(item.getProduct().getReserved() + item.getQuantityInBasket());
+            //item.getProduct().addReserved(item.getQuantityInBasket());
+            products.add(item);
+            return item.getQuantityInBasket();
+        } else {
+            // TODO
+            System.out.println("Nie można dodać do koszyka: zamawiana ilość jest większa niż stan magazynowy");
+            return 0;
+        }
+    }
+
+    public void removeItem(ItemInBasket item) {
+        if (item.getQuantityInBasket() <= item.getProduct().getReserved()) {
+            item.getProduct().setReserved(0);
+            products.remove(item);
+        } else {
+            // TODO
+            System.out.println("Błąd przy usuwaniu produktu z koszyka");
+        }
     }
 }
