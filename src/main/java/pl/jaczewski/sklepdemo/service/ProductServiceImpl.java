@@ -6,6 +6,7 @@ import pl.jaczewski.sklepdemo.database.ProductDao;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -50,5 +51,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product.Category> getCategories() {
         return productDao.categories();
+    }
+
+    @Override
+    public Map<String, String> showAvailability() {
+        return productDao.productAvailability();
     }
 }

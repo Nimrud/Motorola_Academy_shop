@@ -18,11 +18,12 @@
         <td>opis</td>
         <td>cena/szt.</td>
         <td>kup</td>
+        <td>dostępność</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td><a th:href="@{'/allProducts/' + ${product.name}}">Details</a></td>
+        <td><a th:href="@{'/allProducts/' + ${product.name}}">info</a></td>
         <td th:text="${product.name}">Name</td>
         <td><span th:text="${product.description}">Description</span></td>
         <td><span th:text="${product.price}">Price</span></td>
@@ -32,6 +33,7 @@
                 <input type="submit" value="do koszyka" onclick="alert('Dodano do koszyka')">
             </form>
         </td>
+        <td><span th:text="${product.availability}"></span></td>
     </tr>
     </tbody>
 </table>
