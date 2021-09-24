@@ -1,6 +1,5 @@
 package pl.jaczewski.sklepdemo.service;
 
-import pl.jaczewski.sklepdemo.database.ProductDao;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface ProductService {
     Product getProduct(int id);
     Product getProduct(String name);
     void updateProduct(Product product);
-    List<Product> getData();
-    List<Product> getDataForEveryone();
+    List<Product> getAllProducts();
+    List<Product> getProductsForEveryone();
     List<Product.Category> getCategories();
 }

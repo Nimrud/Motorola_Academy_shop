@@ -2,14 +2,58 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Products List</title>
+    <title>Your Basket</title>
     <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
 
 <body>
 <p th:replace="~{fragments/menu :: menuFragment}"></p>
 
+<p th:align="center">
+    <span th:if="${basket.getAllItems().size() == 0}">Twój koszyk jest pusty</span>
+</p>
 
+<span th:if="${basket.getAllItems().size() != 0}">
+<table th:align="center" th:border="1" th:cellpadding="5">
+    <thead>
+    <tr>
+        <td>-</td>
+        <td>nazwa art.</td>
+        <td>kategoria</td>
+        <td>ilość</td>
+        <td>cena/szt.</td>
+        <td>cena łączna</td>
+        <td>-</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${basket.getAllItems()}">
+        <td><a th:href="@{'/allProducts/' + ${item.product.name}}">Details</a></td>
+        <td><span th:text="${item.product.name}">Name</span></td>
+        <td><span th:text="${item.product.category.displayValue}">Category</span></td>
+        <td><span th:text="${basket.getQuantityReserved(item.product.name)}">Reserved</span></td>
+        <td><span th:text="${item.product.price}">Price</span></td>
+        <td><span th:text="${basket.getItemPrice(item.product.name)}">Item Price</span></td>
+        <td><a th:href="@{/basket/removeItem(item=${item})}">Delete</a> </td>
+    </tr>
+    <tr>
+        <td colspan="5" th:align="right">Łączna cena:</td>
+        <td colspan="2"><span th:text="${basket.accumulatedPrice()}">Total price</span></td>
+    </tr>
+    <tr>
+        <td colspan="5" th:align="right"><strong>Cena po rabatach (do zapłaty):</strong></td>
+        <td colspan="2"><strong th:text="${basket.finalPrice()}">Final price</strong></td>
+    </tr>
+    </tbody>
+    <tr>
+        <td colspan="7">
+            <form th:action="@{/finalise}" method="post" th:align="right">
+                <input type="submit" value="Zamawiam z obowiązkiem zapłaty" onclick="alert('Zamówienie złożone')">
+            </form>
+        </td>
+    </tr>
+</table>
+</span>
 
 <footer th:replace="~{fragments/footer :: footerFragment}">Footer</footer>
 
