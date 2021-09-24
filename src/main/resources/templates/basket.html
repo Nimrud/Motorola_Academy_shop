@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Your Basket</title>
+    <title>Twój koszyk</title>
     <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
 
@@ -28,25 +28,25 @@
     </thead>
     <tbody>
     <tr th:each="item : ${basket.getAllItems()}">
-        <td><a th:href="@{'/allProducts/' + ${item.product.name}}">Details</a></td>
+        <td><a th:href="@{'/allProducts/' + ${item.product.name}}">info</a></td>
         <td><span th:text="${item.product.name}">Name</span></td>
         <td><span th:text="${item.product.category.displayValue}">Category</span></td>
         <td><span th:text="${basket.getQuantityReserved(item.product.name)}">Reserved</span></td>
         <td><span th:text="${item.product.price}">Price</span></td>
         <td><span th:text="${basket.getItemPrice(item.product.name)}">Item Price</span></td>
-        <td><a th:href="@{'/basket/removeItem/' + ${item.product.name}}">Delete</a> </td>
+        <td><a th:href="@{'/basket/removeItem/' + ${item.product.name}}">usuń</a> </td>
     </tr>
     <tr>
         <td colspan="5" th:align="right">Łączna cena:</td>
         <td colspan="2"><span th:text="${basket.accumulatedPrice()}">Total price</span></td>
     </tr>
     <tr>
-        <td colspan="5" th:align="right"><strong>Cena po rabatach (do zapłaty):</strong></td>
+        <td colspan="5" th:align="right"><strong>Cena po uwzględnieniu rabatów:</strong></td>
         <td colspan="2"><strong th:text="${basket.finalPrice()}">Final price</strong></td>
     </tr>
     </tbody>
     <tr>
-        <td colspan="7">
+        <td colspan="7" th:align="right">
             <form th:action="@{/finalise}" method="post" th:align="right">
                 <input type="submit" value="Zamawiam z obowiązkiem zapłaty" onclick="alert('Zamówienie złożone')">
             </form>

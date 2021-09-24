@@ -91,4 +91,14 @@ public class Product {
         }
         return 0;
      }
+
+     public String getAvailability() {
+        if (quantityInStock > 10) {
+            return "duża ilość";
+        } else if(quantityInStock > 3) {
+            return "średnia ilość";
+        } else {
+            return "ostatnie sztuki";
+        }
+     }
 }
