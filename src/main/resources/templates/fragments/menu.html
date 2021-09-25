@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Menu</title>
-</head>
-<body>
+
 <section th:fragment="menuFragment">
 <nav>
     <ul>
-        <li><a th:href="@{/info}">O Sklepie</a></li>
+        <li><a th:href="@{/about}">O Sklepie</a></li>
         <li><a th:href="@{/allProducts}">Produkty</a></li>
         <li><a th:href="@{/basket}">Twój koszyk</a></li>
         <li><a th:href="@{/admin/allProducts}">Admin</a></li>
         <li><a th:href="@{/login}">Logowanie</a></li>
-        <li><a th:href="@{/logout}">Wyloguj</a></li>
     </ul>
 </nav>
 </section>
 
-</body>
 </html>
