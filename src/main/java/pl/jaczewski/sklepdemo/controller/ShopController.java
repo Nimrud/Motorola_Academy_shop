@@ -30,7 +30,6 @@ public class ShopController {
     @GetMapping("/allProducts")
     public String listProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
-        model.addAttribute("service", productService.showAvailability());
         model.addAttribute("item", new ItemInBasket());
         return "listProducts";
     }
