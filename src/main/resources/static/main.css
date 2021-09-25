@@ -68,3 +68,25 @@ footer:hover {
 h2 {
     font-family: "Open Sans";
 }
+
+strong {
+    color: darkred;
+}
+
+.about-body {
+    max-width: 80%;
+    margin: auto;
+}
+
+.about-image {
+    width: 30%;
+    height: 30%;
+    float: left;
+    padding: 20px;
+}
+
+.about-us {
+    display: table-cell;
+    text-align: justify;
+    text-justify: auto;
+}

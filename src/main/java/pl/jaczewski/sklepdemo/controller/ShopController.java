@@ -110,6 +110,11 @@ public class ShopController {
         return "homepage";
     }
 
+    @GetMapping("/about")
+    public String aboutUs() {
+        return "about";
+    }
+
     @GetMapping("/basket")
     public String basket(Model model) {
         model.addAttribute("basket", basketService);
