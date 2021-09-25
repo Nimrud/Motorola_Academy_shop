@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,13 @@ public class BasketDAO {
     public BigDecimal finalPrice() {
         // TODO
         // cena z promocjami (zwraca najkorzystniejszą dla klienta opcję)
-        return new BigDecimal("-1");
+        BigDecimal finalPrice = accumulatedPrice();
+        if (accumulatedPrice().compareTo(new BigDecimal("500")) > 0) {
+            return accumulatedPrice().multiply(promotion2).setScale(2, RoundingMode.HALF_UP);
+        } else if (accumulatedPrice().compareTo(new BigDecimal("200")) > 0) {
+            return accumulatedPrice().multiply(promotion1).setScale(2, RoundingMode.HALF_UP);
+        }
+        return finalPrice;
     }
 
     public ItemInBasket getItemByName(String name) {

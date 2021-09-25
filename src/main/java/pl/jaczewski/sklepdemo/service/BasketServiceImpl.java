@@ -47,8 +47,7 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public BigDecimal finalPrice() {
-        // TODO
-        return null;
+        return basketDAO.finalPrice();
     }
 
     public List<ItemInBasket> getAllItems() {
