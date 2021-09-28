@@ -10,9 +10,9 @@
 <p th:replace="~{fragments/menu :: menuFragment}"></p>
 
 <p th:if="${basket.getAllItems().size() == 0}">
-    <h2 th:align="center">Twój koszyk jest pusty</h2>
-    <h4 th:align="center">Nie bądź sknera, sypnij groszem</h4>
-    <h1 th:align="center"><strong>U nas najtaniej!!!</strong></h1>
+    <h2 th:align="center" th:if="${basket.getAllItems().size() == 0}">Twój koszyk jest pusty</h2>
+    <h4 th:align="center" th:if="${basket.getAllItems().size() == 0}">Nie bądź sknera, sypnij groszem</h4>
+    <h1 th:align="center" th:if="${basket.getAllItems().size() == 0}"><strong>U nas najtaniej!!!</strong></h1>
 </p>
 
 <span th:if="${basket.getAllItems().size() != 0}">
