@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <title>Products List</title>
     <link th:href="@{/main.css}" rel="stylesheet" />
+    <link th:href="@{https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
+
 </head>
+<script type="text/javascript">
+    function show_alert() {
+        let dialog = xdialog.create({title: 'Potwierdzenie', body: 'Produkt dodany do koszyka'});
+        dialog.alert('Produkt dodany do koszyka');
+        dialog.close();
+    }
+</script>
 
 <body>
 <p th:replace="~{fragments/menu :: menuFragment}"></p>
@@ -37,7 +47,7 @@
         <td>
             <form th:action="@{'/order/' + ${product.name}}" th:object="${item}" method="post">
                 <input type="number" name="quantityInBasket" min="1" step="1" required>
-                <input type="submit" value="do koszyka" onclick="alert('Dodano do koszyka')">
+                <input type="submit" value="do koszyka" onclick="show_alert()">
             </form>
         </td>
         <td><span th:text="${product.availability}"></span></td>
