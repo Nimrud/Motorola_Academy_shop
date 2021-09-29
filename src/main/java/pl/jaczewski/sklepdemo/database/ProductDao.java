@@ -16,7 +16,7 @@ public class ProductDao {
     private final List<Product> products = new ArrayList<>();
 
     public ProductDao() {
-        addProduct(new Product("Mydło", "Najlepsze mydełko pod słońcem, super pianka, boski zapach", new BigDecimal("25.00"), Product.Category.DOMESTIC_DETERGENTS, 10));
+        addProduct(new Product("Mydło", "Najlepsze mydełko pod słońcem, super pianka, boski zapach", new BigDecimal("25.00"), Product.Category.DOMESTIC_DETERGENTS, 11));
         addProduct(new Product("Masło", "Niezdrowe, same tłuszcze nasycone", new BigDecimal("6.99"), Product.Category.FOOD, 20));
         addProduct(new Product("Chleb", "Razowy, chrupiący, pyszny", new BigDecimal("5.50"), Product.Category.FOOD, 15));
         addProduct(new Product("Colt AR-15", "Półautomatyczny, magazynek na 25 nabojów, Made in USA", new BigDecimal("9999.99"), Product.Category.WEAPONS, 1));
