@@ -2,7 +2,7 @@ package pl.jaczewski.sklepdemo.service;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
-import pl.jaczewski.sklepdemo.database.BasketDAO;
+import pl.jaczewski.sklepdemo.database.BasketDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class BasketServiceImpl implements BasketService {
 
-    private final BasketDAO basketDAO = new BasketDAO();
+    private final BasketDao basketDAO = new BasketDao();
 
     @Override
     public void addItem(@NonNull ItemInBasket item) {

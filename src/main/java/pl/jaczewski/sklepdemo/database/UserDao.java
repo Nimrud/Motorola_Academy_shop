@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class UserDAO {
+public class UserDao {
 
     private final List<User> userList = Arrays.asList(
             new User(1L, "Jan Kowalski", "jan@kowalski.pl", "kowal555", "444-333-555", false, false),

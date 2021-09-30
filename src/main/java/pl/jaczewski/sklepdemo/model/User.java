@@ -1,22 +1,28 @@
 package pl.jaczewski.sklepdemo.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+@Entity
+@NoArgsConstructor
 @Getter
+@Table(name="Users")
 public class User {
 
-    private Long id;
-    @NotBlank
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotBlank(message = "Nazwa użytkownika nie może być pusta")
+    @Size(min = 3, message = "Nazwa użytkownika musi składać się z przynajmniej 3 znaków")
     private String userName;
     @Email
-    @NotBlank
+    @NotBlank(message = "E-mail nie może być pusty")
     private String email;
-    @NotBlank
-    @Min(6)
+    @NotBlank(message = "Hasło nie może być puste")
+    @Size(min = 6, message = "Hasło musi składać się z przynajmniej 6 znaków")
     private String password;
     private String phone;
     private boolean isAdmin;

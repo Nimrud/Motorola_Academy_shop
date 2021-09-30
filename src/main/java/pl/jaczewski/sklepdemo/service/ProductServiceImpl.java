@@ -25,12 +25,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product getProduct(int id) {
-        return productDao.byId(id);
+        return productDao.findProductById(id);
     }
 
     @Override
     public Product getProduct(String name) {
-        return productDao.byName(name);
+        return productDao.findProductByName(name);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        return productDao.all();
+        return productDao.allProducts();
     }
 
 
