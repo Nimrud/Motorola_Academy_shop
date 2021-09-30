@@ -2,7 +2,7 @@ package pl.jaczewski.sklepdemo.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.jaczewski.sklepdemo.database.BasketDAO;
+import pl.jaczewski.sklepdemo.database.BasketDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.model.Product;
 
@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest {
 
-    private BasketDAO basketDAO;
+    private BasketDao basketDAO;
 
     @BeforeEach
     private void setup() {
-        basketDAO = new BasketDAO();
+        basketDAO = new BasketDao();
         basketDAO.addItem(new ItemInBasket(new Product("lampion", "", BigDecimal.valueOf(45), Product.Category.HOUSEHOLD_GOODS, 20), 4));
         basketDAO.addItem(new ItemInBasket(new Product("oranżada", "", BigDecimal.valueOf(4.25), Product.Category.FOOD, 20), 5));
     }

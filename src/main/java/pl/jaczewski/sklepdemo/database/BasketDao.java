@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Repository
-public class BasketDAO {
+public class BasketDao {
 
     // fields
     private List<ItemInBasket> products = new ArrayList<>();
@@ -21,7 +21,7 @@ public class BasketDAO {
     private BigDecimal promotion2 = new BigDecimal("0.9");
 
     // constructor
-    public BasketDAO() {
+    public BasketDao() {
     }
 
     // public methods

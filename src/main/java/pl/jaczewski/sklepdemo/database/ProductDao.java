@@ -26,7 +26,7 @@ public class ProductDao {
         addProduct(new Product("Nałęczowianka 1,5 litra", "Woda mineralna", new BigDecimal("1.99"), Product.Category.FOOD, 20));
     }
 
-    public List<Product> all() {
+    public List<Product> allProducts() {
         return products;
     }
 
@@ -52,7 +52,7 @@ public class ProductDao {
         return allOver18;
     }
 
-    public Product byName(String name) {
+    public Product findProductByName(String name) {
         for (Product product : products) {
             if (name.equals(product.getName())) {
                 return product;
@@ -61,7 +61,7 @@ public class ProductDao {
         return null;
     }
 
-    public Product byId(int id) {
+    public Product findProductById(int id) {
         for (Product product : products) {
             if (product.getId() == id) {
                 return product;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.jaczewski.sklepdemo.database.UserDAO;
+import pl.jaczewski.sklepdemo.database.UserDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.model.Product;
 import pl.jaczewski.sklepdemo.service.BasketService;
@@ -18,10 +18,10 @@ public class ShopController {
 
     private final BasketService basketService;
     private final ProductService productService;
-    private final UserDAO userDAO;
+    private final UserDao userDAO;
 
     @Autowired
-    public ShopController(BasketService basketService, ProductService productService, UserDAO userDAO) {
+    public ShopController(BasketService basketService, ProductService productService, UserDao userDAO) {
         this.basketService = basketService;
         this.productService = productService;
         this.userDAO = userDAO;

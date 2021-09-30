@@ -2,21 +2,30 @@ package pl.jaczewski.sklepdemo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
+@Entity
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Table(name = "Products")
 public class Product {
 
-    private int id;
-    @NotBlank
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotBlank(message = "Nazwa produktu nie może być pusta")
+    @Size(min = 3, message = "Nazwa produktu musi składać się z przynajmniej 3 znaków")
     private String name;
     private String description;
     @NotBlank
-    @DecimalMin("0.01")
+    @DecimalMin(value = "0.01", message = "Cena nie może być niższa niż 1 gr.")
     private BigDecimal price;
     private Category category;
     private int quantityInStock;
