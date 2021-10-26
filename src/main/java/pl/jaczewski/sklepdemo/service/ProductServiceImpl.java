@@ -2,7 +2,7 @@ package pl.jaczewski.sklepdemo.service;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
-import pl.jaczewski.sklepdemo.database.ProductDao;
+import pl.jaczewski.sklepdemo.repository.ProductDao;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.util.List;

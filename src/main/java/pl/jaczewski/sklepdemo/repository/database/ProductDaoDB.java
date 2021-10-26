@@ -1,4 +1,4 @@
-package pl.jaczewski.sklepdemo.database;
+package pl.jaczewski.sklepdemo.repository.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

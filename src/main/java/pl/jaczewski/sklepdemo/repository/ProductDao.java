@@ -1,4 +1,4 @@
-package pl.jaczewski.sklepdemo.database;
+package pl.jaczewski.sklepdemo.repository;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Component;

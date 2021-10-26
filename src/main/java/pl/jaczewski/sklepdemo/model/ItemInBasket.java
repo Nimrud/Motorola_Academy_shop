@@ -1,18 +1,19 @@
 package pl.jaczewski.sklepdemo.model;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@Component
 @Entity
+@Data
+@Component
+@SessionScope
 @NoArgsConstructor
 public class ItemInBasket {
 
@@ -23,6 +24,7 @@ public class ItemInBasket {
     @NotNull
     @ManyToOne
     private Product product;
+    @NotBlank
     private int quantityInBasket;
 
     // constructors

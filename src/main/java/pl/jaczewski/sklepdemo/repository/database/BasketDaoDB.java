@@ -1,7 +1,6 @@
-package pl.jaczewski.sklepdemo.database;
+package pl.jaczewski.sklepdemo.repository.database;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 
@@ -10,21 +9,20 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @Repository
-public class BasketDao {
+//@Scope("session")
+public class BasketDaoDB {
 
-    // fields
     private List<ItemInBasket> products = new ArrayList<>();
     private BigDecimal promotion1 = new BigDecimal("0.95");
     private BigDecimal promotion2 = new BigDecimal("0.9");
 
-    // constructor
-    public BasketDao() {
+    private final BasketInterface basketInterface;
+
+    public BasketDaoDB(BasketInterface basketInterface) {
+        this.basketInterface = basketInterface;
     }
 
-    // public methods
     public List<ItemInBasket> getAllItems() {
         return products;
     }
@@ -40,8 +38,6 @@ public class BasketDao {
     }
 
     public BigDecimal finalPrice() {
-        // TODO
-        // cena z promocjami (zwraca najkorzystniejszą dla klienta opcję)
         BigDecimal finalPrice = accumulatedPrice();
         if (accumulatedPrice().compareTo(new BigDecimal("500")) > 0) {
             return accumulatedPrice().multiply(promotion2).setScale(2, RoundingMode.HALF_UP);
@@ -76,7 +72,6 @@ public class BasketDao {
     public int addItem(ItemInBasket item) {
         if (item.getQuantityInBasket() <= item.getProduct().getQuantityInStock()) {
             item.getProduct().setReserved(item.getProduct().getReserved() + item.getQuantityInBasket());
-            //item.getProduct().addReserved(item.getQuantityInBasket());
             products.add(item);
             return item.getQuantityInBasket();
         } else {
@@ -95,4 +90,5 @@ public class BasketDao {
             System.out.println("Błąd przy usuwaniu produktu z koszyka");
         }
     }
+
 }

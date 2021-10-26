@@ -1,8 +1,8 @@
-package pl.jaczewski.sklepdemo.service;
+package pl.jaczewski.sklepdemo.service.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.jaczewski.sklepdemo.database.ProductDaoDB;
+import pl.jaczewski.sklepdemo.repository.database.ProductDaoDB;
 import pl.jaczewski.sklepdemo.model.Product;
 
 import java.util.ArrayList;

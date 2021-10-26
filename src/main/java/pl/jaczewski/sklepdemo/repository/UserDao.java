@@ -1,4 +1,4 @@
-package pl.jaczewski.sklepdemo.database;
+package pl.jaczewski.sklepdemo.repository;
 
 import org.springframework.stereotype.Component;
 import pl.jaczewski.sklepdemo.model.User;
