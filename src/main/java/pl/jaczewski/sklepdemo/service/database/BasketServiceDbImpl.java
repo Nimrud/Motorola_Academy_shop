@@ -1,36 +1,45 @@
-package pl.jaczewski.sklepdemo.service;
+package pl.jaczewski.sklepdemo.service.database;
 
 import lombok.NonNull;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import pl.jaczewski.sklepdemo.repository.BasketDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
+import pl.jaczewski.sklepdemo.repository.database.BasketDaoDB;
+import pl.jaczewski.sklepdemo.service.BasketService;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+//@Scope("session")
 @Service
-public class BasketServiceImpl implements BasketService {
+@Primary
+public class BasketServiceDbImpl implements BasketService {
 
-    private final BasketDao basketDAO = new BasketDao();
+    private final BasketDaoDB basketDaoDB;
+
+    public BasketServiceDbImpl(BasketDaoDB basketDaoDB) {
+        this.basketDaoDB = basketDaoDB;
+    }
 
     @Override
     public void addItem(@NonNull ItemInBasket item) {
-        basketDAO.addItem(item);
+        basketDaoDB.addItem(item);
     }
 
     @Override
     public void removeItem(@NonNull ItemInBasket item) {
-        basketDAO.removeItem(item);
+        basketDaoDB.removeItem(item);
     }
 
     @Override
     public ItemInBasket getItemByName(String name) {
-        return basketDAO.getItemByName(name);
+        return basketDaoDB.getItemByName(name);
     }
 
     @Override
     public int getQuantityReserved(String name) {
-        return basketDAO.getQuantityReserved(name);
+        return basketDaoDB.getQuantityReserved(name);
     }
 
     @Override
@@ -42,15 +51,15 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public BigDecimal accumulatedPrice() {
-        return basketDAO.accumulatedPrice();
+        return basketDaoDB.accumulatedPrice();
     }
 
     @Override
     public BigDecimal finalPrice() {
-        return basketDAO.finalPrice();
+        return basketDaoDB.finalPrice();
     }
 
     public List<ItemInBasket> getAllItems() {
-        return basketDAO.getAllItems();
+        return basketDaoDB.getAllItems();
     }
 }

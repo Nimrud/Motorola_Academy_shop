@@ -2,7 +2,7 @@ package pl.jaczewski.sklepdemo.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.jaczewski.sklepdemo.database.BasketDao;
+import pl.jaczewski.sklepdemo.repository.BasketDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.model.Product;
 
