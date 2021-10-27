@@ -10,7 +10,6 @@
 <script type="text/javascript">
     function show_alert() {
         let number = document.getElementsByClassName("quantityInBasket");
-        let button = document.getElementsByClassName("submit");
         let quantity = "";
         for (let i = 0; i < number.length; i++) {
             if (number[i].value > 0) {
@@ -47,7 +46,7 @@
         <td><a th:href="@{'/allProducts/' + ${product.name}}">info</a></td>
         <td th:text="${product.name}">Name</td>
         <td><span th:text="${product.description}">Description</span></td>
-        <td><span th:text="${product.price}">Price</span></td>
+        <td th:align="right"><span th:text="${product.price}">Price</span></td>
         <td>
             <form th:action="@{'/order/' + ${product.name}}" th:object="${item}" method="post">
                 <input class="quantityInBasket" type="number" name="quantityInBasket" min="1" step="1" th:max="${product.getQuantityInStock()}" required>

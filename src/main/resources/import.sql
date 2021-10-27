@@ -1,0 +1,11 @@
+insert into products(name, description, price, category, quantity, reserved) values('Chleb żytni', 'Lubaszka', 3.99, 'FOOD', 8, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Mydło Dove', 'Najlepsze mydełko pod słońcem, super pianka, boski zapach', 4.49, 'DOMESTIC_DETERGENTS', 11, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Szampon Złoty Bursztyn', 'Do włosów brudnych', 7.29, 'DOMESTIC_DETERGENTS', 4, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Szczoteczka do zębów Szczerbal', 'Twarda, z zaokrąglonymi końcówkami', 14.19, 'DOMESTIC_DETERGENTS', 2, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Masło Łaciate', 'Niezdrowe, same tłuszcze nasycone', 7.99, 'FOOD', 5, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Wyciskarka do czosnku', 'Żadna inna tak nie wyciska', 20.00, 'HOUSEHOLD_GOODS', 2, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Zmiotka z szufelką', 'Żadna inna tak nie zamiata', 15.70, 'HOUSEHOLD_GOODS', 3, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Piwo Okocim', 'O kocim spojrzeniu', 5.50, 'ALCOHOL', 40, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Lalka CryingBabe', 'Chińska, na baterie, wydaje odgłosy', 49.99, 'TOYS', 4, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Woda Nałęczowianka 1,5 l', 'Woda mineralna, 1,5 litra', 1.80, 'FOOD', 20, 0);
+insert into products(name, description, price, category, quantity, reserved) values('Colt AR-15', 'Półautomatyczny, magazynek na 25 nabojów, Made in USA', 9999.99, 'WEAPONS', 1, 0);

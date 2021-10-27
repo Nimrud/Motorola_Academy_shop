@@ -2,8 +2,8 @@ package pl.jaczewski.sklepdemo.service.database;
 
 import lombok.NonNull;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.repository.database.BasketDaoDB;
 import pl.jaczewski.sklepdemo.service.BasketService;
@@ -11,7 +11,7 @@ import pl.jaczewski.sklepdemo.service.BasketService;
 import java.math.BigDecimal;
 import java.util.List;
 
-//@Scope("session")
+//@SessionScope
 @Service
 @Primary
 public class BasketServiceDbImpl implements BasketService {

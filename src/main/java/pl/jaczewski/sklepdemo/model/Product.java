@@ -22,12 +22,15 @@ public class Product {
     private long id;
     @NotBlank(message = "Nazwa produktu nie może być pusta")
     @Size(min = 3, message = "Nazwa produktu musi składać się z przynajmniej 3 znaków")
+    @Column(unique = true)
     private String name;
     private String description;
     @NotBlank
     @DecimalMin(value = "0.01", message = "Cena nie może być niższa niż 1 gr.")
     private BigDecimal price;
+    @Enumerated(EnumType.STRING)
     private Category category;
+    @Column(name = "quantity")
     private int quantityInStock;
     private int reserved;
 

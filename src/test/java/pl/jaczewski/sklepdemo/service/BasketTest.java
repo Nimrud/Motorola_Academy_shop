@@ -2,9 +2,10 @@ package pl.jaczewski.sklepdemo.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.jaczewski.sklepdemo.repository.BasketDao;
 import pl.jaczewski.sklepdemo.model.ItemInBasket;
 import pl.jaczewski.sklepdemo.model.Product;
+import pl.jaczewski.sklepdemo.repository.database.BasketDaoDB;
+import pl.jaczewski.sklepdemo.repository.database.BasketInterface;
 
 import java.math.BigDecimal;
 
@@ -12,11 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest {
 
-    private BasketDao basketDAO;
+    private BasketDaoDB basketDAO;
+    private BasketInterface basketInterface;
 
     @BeforeEach
     private void setup() {
-        basketDAO = new BasketDao();
+        basketDAO = new BasketDaoDB(basketInterface);
         basketDAO.addItem(new ItemInBasket(new Product("lampion", "", BigDecimal.valueOf(45), Product.Category.HOUSEHOLD_GOODS, 20), 4));
         basketDAO.addItem(new ItemInBasket(new Product("oranżada", "", BigDecimal.valueOf(4.25), Product.Category.FOOD, 20), 5));
     }
