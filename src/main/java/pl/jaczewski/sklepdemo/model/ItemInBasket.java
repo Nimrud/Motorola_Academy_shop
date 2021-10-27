@@ -3,7 +3,6 @@ package pl.jaczewski.sklepdemo.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,7 +12,6 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @Component
-@SessionScope
 @NoArgsConstructor
 public class ItemInBasket {
 
